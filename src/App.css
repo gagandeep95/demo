@@ -2,3 +2,40 @@
     margin:2px;
     background-color: #f6f6f6;
 }
+.students__block{
+    box-shadow: 2px 2px 2px 2px rgba(0,0,0,0.19);
+    background-color: #fff;
+    width:70%;
+    margin: 30px auto;
+    height:530px;
+    overflow-y: auto;
+}
+            /* CSS Section for searcbar component */
+.searchName{  
+    padding: 10px;
+    width:97.7%;
+    font-size:14px;
+    border:none;
+    box-shadow: 1px 1px 1px 1px rgba(0,0,0,0.19);
+}
+.searchName:focus{
+    outline:none;
+}
+
+            /* PROFILE COMPONENT  */
+.student{
+    display:flex;
+}
+.student > .student__pic {
+    padding:10px;
+}
+.student > .student__pic > img{
+    border-radius: 100%;
+    width:130px;
+    box-shadow: 1px 1px 1px 1px rgba(0,0,0,0.19);
+}
+.student > .student__info{
+    padding: 15px;
+    line-height: 1.5;
+}
+                             
