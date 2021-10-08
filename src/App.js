@@ -5,13 +5,18 @@ import axios from 'axios';
 
 function App() {
   const [students, setStudents] = useState([]);
-
   useEffect(() => {
        
     // fetching students details from the rest API
     axios.get(`https://api.hatchways.io/assessment/students`)
     .then((res) => {
-      setStudents(res.data.students);
+      const results = res.data.students.map((student) => {
+        return {
+          ...student,
+          isOpened : false,
+        }
+      })
+      setStudents(results);
     })
   }, []);
   return (

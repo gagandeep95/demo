@@ -1,6 +1,6 @@
 import React from 'react';
 import Searchbar from './Searchbar';
-import './Students.css';
+import "../App.css";
 
 function Students({students}) {
     

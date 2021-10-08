@@ -1,9 +1,14 @@
 import React, {useState} from 'react';
 import Profile from './Profile';
 import '../App.css';
+import { useEffect } from 'react/cjs/react.development';
 
 function Searchbar({students}) {
     const [filteredStudents, setFilteredStudents] = useState(students);
+
+    useEffect(() => {
+        setFilteredStudents(students);
+    },[students])
 
     const handleSearch = (e) => {
         let name  = e.target.value;
