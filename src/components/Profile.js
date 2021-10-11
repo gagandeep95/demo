@@ -1,37 +1,67 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, useContext} from 'react';
 import '../App.css';
+import { StudentsContext } from '../App';
 
-function Profile({filteredStudents}) {
-    const [students, setStudents] = useState([]);   
-    
+function Profile() {
+    // const [students, setStudents] = useState(filteredStudents);   
+    // const [tag, setTag] = useState("");
+    // const studentId = useRef(null);
+
+    const students = useContext(StudentsContext);
+
+    console.log(students.studentsState.students);
+
     // This Method stores all the filtered list of students
-    useEffect(() => {
-        setStudents(filteredStudents)
-    }, [filteredStudents])
+    // useEffect(() => {
+    //     // console.log('use effect from profile')
+    //     setStudents(filteredStudents)
+    // },[filteredStudents])
 
+    // console.log(students);
     // This method is used to find average of the students 's grades
     const findAverage = (total, grade, index, arr) => {
         return total + parseInt(grade)/arr.length;
     }
 
     // This method toggle the student scores button
-    const handleToggle = (index) => {
-        const results = students.map((item, idx) => {
-            if(index === idx){
-                return {
-                    ...item,
-                    isOpened: !item.isOpened,
-                }
-            }
-            return item;
-        })
-        setStudents(results);
-    }
+    // const handleToggle = (id) => {
+    //     const results = students.map((student) => {
+    //         if(id === student.id){
+    //             return {
+    //                 ...student,
+    //                 isOpened: !student.isOpened,
+    //             }
+    //         }
+    //         return student;
+    //     })
+    //     setStudents(results);
+    // };
+
+    // const handleTags = (e, index) => {
+    //     let value = e.target.value;
+    //     if(e.key === 'Enter'){
+    //          const results = students.map((student) => {
+    //              if(index === student.id){
+    //                  if(!student.tags.includes(value)){    
+    //                     return {
+    //                         ...student,
+    //                         tags : [...student.tags, value] 
+    //                     }
+    //                 }
+
+    //              }
+    //             //  console.log(student);
+    //              return student;
+    //          })
+    //          setStudents(results);
+    //          e.target.value = '';     
+    //     }
+    // }
 
     return (
         <div>
            {
-                students.map((student, i) => (
+                students.studentsState.filteredStudents.map((student, i) => (
                     <div className="student" key={i}>
                         <figure className="student__pic">
                             <img src={student.pic} alt="profilepic"/>
@@ -43,6 +73,14 @@ function Profile({filteredStudents}) {
                             <p>Skill: {student.skill}</p>
                             <p>Average: {student.grades.reduce(findAverage, 0)} %</p>
                             <br/>
+                            <div className="tags">
+                                {student.tags.map((tag, i) => (
+                                    <div key={i}>
+                                        <p>{tag}</p>
+                                    </div>
+                                ))}
+                            </div>
+                            {/* <input  type="text" className="addTag" onKeyDown={(e) => handleTags(e, student.id)} placeholder="Add a Tag"/> */}
                             <div className="scores">
                             {   
                                 student.isOpened ? 
@@ -55,12 +93,12 @@ function Profile({filteredStudents}) {
                             }
                             </div>
                         </div>
-                        <div className="student__scores">
+                        {/* <div className="student__scores">
                             {!student.isOpened ? 
-                            (<button onClick={() =>handleToggle(i)}>+</button>) :
-                            (<button onClick={() => handleToggle(i)}>-</button>)
+                            (<button onClick={() =>handleToggle(student.id)}>+</button>) :
+                            (<button onClick={() => handleToggle(student.id)}>-</button>)
                         }  
-                        </div>    
+                        </div>     */}
                    </div>        
                 ))
             } 

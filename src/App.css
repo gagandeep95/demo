@@ -53,3 +53,16 @@
     cursor: pointer;
 }
                              
+
+/* Tag Component */
+
+.student > .student__info > .addTag{
+    border:none;
+    box-shadow: 1px 1px 1px 1px rgba(0,0,0,0.19);
+}
+.tag{
+    padding:2px;
+    background-color:grey;
+    display: inline;
+    box-shadow: 1px 1px 1px 1px rgba(0,0,0,0.19);
+}
