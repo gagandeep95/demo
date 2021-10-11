@@ -6,14 +6,14 @@ import axios from 'axios';
 function App() {
   const [students, setStudents] = useState([]);
   useEffect(() => {   
-    // fetching students details from the rest API
+    // fetching list of students from the rest API
     axios.get(`https://api.hatchways.io/assessment/students`)
     .then((res) => {
       const results = res.data.students.map((student) => {
         return {
           ...student,
-          isOpened : false,
-          tags : []
+          isOpened : false,    // adding this prop for toggle functionality
+          tags : []            // prop for adding tags in list 
         }
       })
       setStudents(results);
